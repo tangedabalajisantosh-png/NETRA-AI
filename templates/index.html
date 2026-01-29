@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ asteroid.name }} | NETRA AI Mission Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="mc-header">
+    <div class="mc-title">
+        NETRA AI — MISSION CONTROL
+    </div>
+
+    <div class="mc-object">
+        OBJECT ID: {{ asteroid.name }}
+    </div>
+
+    <div class="live-indicator">
+        <span class="live-dot"></span>
+        LIVE MONITORING
+    </div>
+</div>
+
+
+
+<!-- ===== STATUS BAR ===== -->
+<div class="status-bar {% if asteroid.is_potentially_hazardous_asteroid %}status-danger{% else %}status-safe{% endif %}">
+    STATUS:
+    {% if asteroid.is_potentially_hazardous_asteroid %}
+        POTENTIALLY HAZARDOUS OBJECT — MONITORING
+    {% else %}
+        NO IMMEDIATE THREAT DETECTED
+    {% endif %}
+</div>
+
+<!-- ===== MAIN GRID ===== -->
+<div class="mc-grid">
+
+    <!-- SYSTEM INFO -->
+    <div class="mc-card">
+        <div class="mc-card-title">SYSTEM DATA</div>
+        <p>Absolute Magnitude: {{ asteroid.absolute_magnitude_h }}</p>
+        <p>Hazard Flag: {{ asteroid.is_potentially_hazardous_asteroid }}</p>
+    </div>
+
+    <!-- SIZE -->
+    <div class="mc-card">
+        <div class="mc-card-title">OBJECT DIMENSIONS (KM)</div>
+        <p>Minimum Diameter:
+            {{ asteroid.estimated_diameter.kilometers.estimated_diameter_min | float | round(3) }}
+        </p>
+        <p>Maximum Diameter:
+            {{ asteroid.estimated_diameter.kilometers.estimated_diameter_max | float | round(3) }}
+        </p>
+    </div>
+
+    <!-- APPROACH -->
+    {% if asteroid.close_approach_data %}
+    <div class="mc-card">
+        <div class="mc-card-title">TRAJECTORY SNAPSHOT</div>
+        <p>Approach Date:
+            {{ asteroid.close_approach_data[0].close_approach_date }}
+        </p>
+        <p>Velocity:
+            {{ asteroid.close_approach_data[0].relative_velocity.kilometers_per_hour | float | round(0) }}
+            km/h
+        </p>
+        <p>Miss Distance:
+            {{ asteroid.close_approach_data[0].miss_distance.kilometers | float | round(0) }}
+            km
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- AI ASSESSMENT -->
+    <div class="mc-card mc-ai">
+        <div class="mc-card-title">NETRA AI ASSESSMENT</div>
+
+        {% if asteroid.is_potentially_hazardous_asteroid %}
+            <p>
+                Object classified as potentially hazardous based on size and trajectory.
+                Continuous tracking is advised.
+            </p>
+        {% else %}
+            <p>
+                Object presents no immediate risk.
+                Passive monitoring recommended.
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- EXTERNAL LINK -->
+    <div class="mc-card">
+        <div class="mc-card-title">EXTERNAL REFERENCE</div>
+        <a href="{{ asteroid.nasa_jpl_url }}" target="_blank" class="mc-link">
+            NASA JPL DATABASE →
+        </a>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="mc-footer">
+    DATA SOURCE: NASA NeoWs / JPL · SYSTEM: NETRA AI
+</div>
+
+<div class="back-btn-container">
+    <button onclick="history.back()" class="back-btn">⬅ RETURN TO DASHBOARD</button>
+</div>
+
+</body>
+</html>
