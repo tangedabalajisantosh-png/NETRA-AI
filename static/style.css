@@ -1,0 +1,421 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    color: #e0f7ff;
+    text-align: center;
+
+    /* 🌌 Simple space background with stars */
+    background-color: #000;
+    background-image:
+        radial-gradient(1px 1px at 15% 25%, #ffffff, transparent),
+        radial-gradient(1px 1px at 35% 70%, #ffffff, transparent),
+        radial-gradient(1px 1px at 55% 40%, #ffffff, transparent),
+        radial-gradient(1px 1px at 75% 80%, #ffffff, transparent),
+        radial-gradient(1px 1px at 90% 20%, #ffffff, transparent),
+        radial-gradient(circle at top, #0a1633, #000);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+/* Title */
+h1 {
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px cyan;
+}
+
+/* Subtitle */
+.tagline {
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+/* Card Grid */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    padding: 30px;
+}
+
+/* Normal Card */
+.card {
+    background: linear-gradient(180deg, rgba(0,255,255,0.12), rgba(0,0,0,0.6));
+    border: 1px solid cyan;
+    border-radius: 16px;
+    padding: 22px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+}.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Hover Effect */
+.card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 35px cyan;
+}
+
+.asteroid-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin: 0 auto 16px auto;
+    display: block;
+
+    /* depth + glow */
+    filter: drop-shadow(0 0 14px rgba(0,255,255,0.8));
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* hover = cinematic */
+.card:hover .asteroid-img {
+    transform: scale(1.25) rotate(-8deg);
+    filter: drop-shadow(0 0 28px cyan);
+}
+
+/* hazard image stronger */
+.hazard .asteroid-img {
+    filter: drop-shadow(0 0 25px red);
+}
+
+
+/* Detail Page Box */
+.detail-box {
+    margin: 40px auto;
+    width: 60%;
+    padding: 20px;
+    border: 1px solid cyan;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.4);
+}
+
+/* 🔴 Hazard Card */
+.hazard {
+    border: 2px solid red;
+    box-shadow: 0 0 25px red;
+    animation: pulse 1.5s infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 15px red; }
+    50% { box-shadow: 0 0 45px red; }
+    100% { box-shadow: 0 0 15px red; }
+}
+
+/* Hazard Text */
+.danger-text {
+    color: red;
+    font-weight: bold;
+}
+
+/* Alert Label */
+.alert-text {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px red;
+}
+
+/* 🔻 Footer */
+.footer {
+    margin-top: 40px;
+    padding: 20px;
+    font-size: 14px;
+    opacity: 0.75;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(0,255,255,0.2);
+}
+
+.footer span {
+    color: cyan;
+    font-weight: bold;
+}
+
+/* ===== Asteroid Detail Page ===== */
+
+.detail-title {
+    margin-top: 30px;
+    font-size: 28px;
+    text-shadow: 0 0 15px cyan;
+}
+
+.detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.detail-card {
+    background: rgba(0, 255, 255, 0.06);
+    border: 1px solid cyan;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.15);
+}
+
+.detail-card h3 {
+    margin-bottom: 10px;
+    color: cyan;
+}
+
+.jpl-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: cyan;
+    text-decoration: none;
+    border-bottom: 1px solid cyan;
+}
+
+.jpl-link:hover {
+    opacity: 0.8;
+}
+
+.back-btn-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.back-btn {
+    background: transparent;
+    border: 1px solid cyan;
+    color: cyan;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: cyan;
+    color: #000;
+}
+/* ===== NASA MISSION CONTROL STYLE ===== */
+
+.mc-header {
+    position: relative;   /* ⭐ THIS LINE FIXES EVERYTHING */
+    text-align: center;
+    margin-top: 25px;
+    font-family: monospace;
+}
+
+
+.mc-title {
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: cyan;
+}
+
+.mc-object {
+    margin-top: 6px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.status-bar {
+    margin: 30px auto;
+    max-width: 900px;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: monospace;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.status-safe {
+    border: 1px solid cyan;
+    color: cyan;
+}
+
+.status-danger {
+    border: 1px solid red;
+    color: red;
+}
+
+.mc-grid {
+    max-width: 1000px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+.mc-card {
+    background: rgba(0, 255, 255, 0.05);
+    border: 1px solid cyan;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: monospace;
+}
+
+.mc-card-title {
+    margin-bottom: 12px;
+    color: cyan;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.mc-ai {
+    border-color: #00ffaa;
+}
+
+.mc-link {
+    color: cyan;
+    text-decoration: none;
+}
+
+.mc-link:hover {
+    text-decoration: underline;
+}
+
+.mc-footer {
+    text-align: center;
+    margin: 40px 0 10px;
+    font-size: 12px;
+    opacity: 0.6;
+    font-family: monospace;
+}
+
+/* ===== LIVE MONITORING INDICATOR ===== */
+
+.mc-header {
+    position: relative;
+}
+
+.live-indicator {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+}
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+    background-color: #00ffcc;
+    border-radius: 50%;
+    animation: liveBlink 1.2s infinite;
+}
+
+@keyframes liveBlink {
+    0% { opacity: 1; }
+    50% { opacity: 0.25; }
+    100% { opacity: 1; }
+}
+
+/* ===== NASA SCANLINE OVERLAY ===== */
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 4px
+    );
+    opacity: 0.12;
+    z-index: 1;
+}
+
+/* ===== HUD CORNER BRACKETS (NASA STYLE) ===== */
+
+.card {
+    position: relative; /* REQUIRED for corners */
+}
+
+.card::before,
+.card::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid cyan;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* top-left corner */
+.card::before {
+    top: 8px;
+    left: 8px;
+    border-right: none;
+    border-bottom: none;
+}
+
+/* bottom-right corner */
+.card::after {
+    bottom: 8px;
+    right: 8px;
+    border-left: none;
+    border-top: none;
+}
+
+/* Hazard cards = red corners */
+.hazard::before,
+.hazard::after {
+    border-color: red;
+}
+/* ===== TELEMETRY SIGNAL BAR (NASA STYLE) ===== */
+
+.telemetry-bar {
+    margin-top: 14px;
+    width: 100%;
+    height: 4px;
+    background: rgba(0,255,255,0.15);
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.telemetry-bar span {
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        cyan,
+        transparent
+    );
+    animation: signalMove 3s linear infinite;
+}
+
+@keyframes signalMove {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(300%); }
+}
+
+/* 🔴 Hazardous asteroid = red telemetry */
+.hazard .telemetry-bar span {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        red,
+        transparent
+    );
+}
